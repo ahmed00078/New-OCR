@@ -1,0 +1,31 @@
+# Core ML libraries
+torch
+torchvision
+transformers
+accelerate
+pillow
+
+# PDF processing
+pdf2image
+PyMuPDF
+pypdf
+
+# Layout detection avec PaddleOCR (optionnel)
+paddleocr
+
+# Image processing
+opencv-python
+numpy
+
+# API
+fastapi
+uvicorn[standard]
+python-multipart
+
+# Utilities
+psutil
+pydantic
+
+# Performance optimizations
+optimum
+bitsandbytes
