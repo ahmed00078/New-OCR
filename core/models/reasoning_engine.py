@@ -10,7 +10,7 @@ from config.settings import settings
 logger = logging.getLogger(__name__)
 
 class ReasoningEngine:
-    """Wrapper pour Qwen - Extrait des informations structurees en JSON"""
+    """Wrapper pour AI - Extrait des informations structurees en JSON"""
     
     def __init__(self, device: str = "auto"):
         self.model = None
@@ -31,12 +31,12 @@ class ReasoningEngine:
         return device_preference
     
     def load(self) -> None:
-        """Lazy loading du modele Qwen"""
+        """Lazy loading du modele AI"""
         if self.model is not None:
             return
             
         try:
-            logger.info(f"Loading Qwen model: {self.model_name}")
+            logger.info(f"Loading AI model: {self.model_name}")
             
             self.tokenizer = AutoTokenizer.from_pretrained(
                 self.model_name, 
@@ -60,7 +60,7 @@ class ReasoningEngine:
                         llm_int8_threshold=6.0,
                         llm_int8_enable_fp32_cpu_offload=False
                     )
-                    logger.info("Using 8-bit quantization for Qwen model")
+                    logger.info("Using 8-bit quantization for AI model")
                 except ImportError:
                     logger.warning("bitsandbytes not available, using full precision")
             
@@ -74,10 +74,10 @@ class ReasoningEngine:
                 self.model = self.model.to(self.device)
             
             self.model.eval()
-            logger.info(f"Qwen model loaded successfully on {self.device}")
+            logger.info(f"AI model loaded successfully on {self.device}")
             
         except Exception as e:
-            logger.error(f"Failed to load Qwen model: {e}")
+            logger.error(f"Failed to load AI model: {e}")
             raise
     
     def extract_to_json(self, ocr_text: str, user_prompt: str) -> Dict[str, Any]:
@@ -230,7 +230,7 @@ JSON Response:
                 torch.cuda.empty_cache()
             gc.collect()
             
-            logger.info("Qwen model unloaded")
+            logger.info("AI model unloaded")
     
     def __del__(self):
         """Cleanup automatique"""

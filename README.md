@@ -6,7 +6,7 @@ Version simplifiée et corrigée d'une pipeline OCR basée sur **GOT-OCR 2.0** a
 
 - **Pipeline OCR complète** : Extraction de texte avec GOT-OCR 2.0
 - **Segmentation intelligente** : PP-DocLayout pour identifier les zones (texte, tableau, image, formule)
-- **Raisonnement contextuel** : Qwen pour transformer le texte en JSON structuré
+- **Raisonnement contextuel** : AI pour transformer le texte en JSON structuré
 - **Gestion mémoire optimisée** : Traitement par batch, cache intelligent
 - **API simple** : Interface REST minimaliste
 
@@ -18,7 +18,7 @@ got-ocr-simplified/
 │   ├── models/
 │   │   ├── ocr_engine.py         # GOT-OCR wrapper
 │   │   ├── layout_engine.py      # PP-DocLayout wrapper
-│   │   └── reasoning_engine.py   # Qwen wrapper
+│   │   └── reasoning_engine.py   # AI wrapper
 │   ├── processors/
 │   │   ├── document_processor.py # Orchestrateur principal
 │   │   ├── pdf_handler.py        # Gestion PDF optimisée

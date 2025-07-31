@@ -55,7 +55,7 @@ async def health_check():
         return HealthResponse(
             status="healthy",
             memory_usage_mb=memory_info["current_memory_mb"],
-            models_loaded=[]  # e implementer si necessaire
+            models_loaded=[]
         )
     except Exception as e:
         logger.error(f"Health check failed: {e}")
@@ -74,7 +74,7 @@ async def process_document(
     Traite un document uploade
     
     Args:
-        file: Fichier e traiter (PDF, JPG, PNG, etc.)
+        file: Fichier a traiter (PDF, JPG, PNG, etc.)
         mode: Mode de traitement ('ocr' ou 'extract')
         user_prompt: Instructions d'extraction (requis pour mode 'extract')
         use_layout: Utiliser la segmentation de layout
