@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "script": "test_sustainability_reports.py",
+    "date_execution": "2025-07-31 16:30:41",
+    "pipeline_version": "1.0.0"
+  },
+  "configuration": {
+    "champs_cibles": {
+      "fabricant": "Nom du fabricant/constructeur",
+      "annee": "Année du rapport ou du produit",
+      "nom_produit": "Nom/modèle du produit",
+      "impact_carbone": "Impact carbone (kg CO2 eq ou unité similaire)",
+      "consommation_electrique": "Consommation électrique maximale (W, kW, etc.)",
+      "poids_produit": "Poids du produit (kg, g, etc.)"
+    },
+    "dossier_source": "data"
+  },
+  "resultats": [
+    {
+      "fichier": "EcoProfile_SurfaceHub.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 41.08,
+      "success": true,
+      "donnees_extraites": {
+        "error": "Format JSON invalide",
+        "raw_response": "\"fabricant\": \"Microsoft\", \"annee\": 24, \"nom_produit\": \"Surface Hub\", \"impact_carbone\": null, \"consommation ELECTRIQUE\": null , \"poids_produit \": null }",
+        "parsing_error": "Extra data: line 1 column 12 (char 11)"
+      },
+      "texte_brut_apercu": "E C O P R O F I L E\nSurface Hub 3\nSurface Hub 2S\n\n--- Page suivante ---\n\nOur goals\nIn 2020 Microsoft committed to becoming carbon negative, water positive, and zero waste by \n20301. Surface plays a ke...",
+      "pages_traitees": 6,
+      "completude": 0.0
+    },
+    {
+      "fichier": "VeritonVero6000MidTower_VVM6725GT.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 18.22,
+      "success": true,
+      "donnees_extraites": {
+        "error": "Format JSON invalide",
+        "raw_response": "\"fabricant\": \"Acer\", \"annee\": 204, \"nom_produit\": null, \"impact_carbone\": 700, \"consommation\telectrique\": 161, \"poids_produit\\\": 10\\.6 }",
+        "parsing_error": "Extra data: line 1 column 12 (char 11)"
+      },
+      "texte_brut_apercu": "Product Carbon Footprint\nEstimated carbon footprint\n723 +/- 216 kgCO2e\nAcer carefully consider environmental factors in every stage of the product life cycle. This includes\nselecting materials during ...",
+      "pages_traitees": 2,
+      "completude": 0.0
+    },
+    {
+      "fichier": "pcf-ideapad-1-15-alc7.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 17.94,
+      "success": true,
+      "donnees_extraites": {
+        "error": "Format JSON invalide",
+        "raw_response": "\"fabricant\": \"Lenovo\", \"annee\": 2109, \"nom_produit\": \"IdeaPad 1i ALC7\", \"impact_carbone\": 325, \"consommation\telectrique\": 50.83, \"poids_produit\t\": 1600 }",
+        "parsing_error": "Extra data: line 1 column 12 (char 11)"
+      },
+      "texte_brut_apercu": "Product Carbon Footprint I de a pad 115 ALC 7 Le novo Machine Types: 82 R 4 Device Type: Notebook Report Date 01/09/2023 Lenovo values our commitment to the environment: As part of that commitment, Le...",
+      "pages_traitees": 1,
+      "completude": 0.0
+    },
+    {
+      "fichier": "c07524980.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 78.59,
+      "success": true,
+      "donnees_extraites": {
+        "error": "Format JSON invalide",
+        "raw_response": "7.5 kWh\n190.1 Wh\n1,800 grams\n{\"fabricant\": \"HP\", \"annee\": 24, \"nom_produit\": \"EliteBook 25\", \"impact_carbone\": 1820, \"consommation_eletrique\": 0.2, \"poids_produit_kg\": 3}\n}",
+        "parsing_error": "Extra data: line 2 column 1 (char 142)"
+      },
+      "texte_brut_apercu": "Product carbon footprint report | 08-Jan-2024\nHP EliteBook 830 & 836 G5\nAs part of HP’s commitment to continually improve product sustainability, one tool HP utilizes is product carbon footprinting\n(P...",
+      "pages_traitees": 1,
+      "completude": 0.0
+    },
+    {
+      "fichier": "AcerChromebook311_C723.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 77.71,
+      "success": true,
+      "donnees_extraites": {
+        "error": "Format JSON invalide",
+        "raw_response": "/fév\n21/02/2019\n22/03/2109\n15/04/2209",
+        "parsing_error": "Expecting value: line 1 column 1 (char 0)"
+      },
+      "texte_brut_apercu": "Product Carbon Footprint \nAcer Chromebook 311 \nC723, C723T, C723-TCO, C723T-TCO \n \n \n \nEstimated carbon footprint \n212 +/- 40†kgCO2e \n \n \n \nAcer carefully consider environmental factors in every stage...",
+      "pages_traitees": 2,
+      "completude": 0.0
+    },
+    {
+      "fichier": "final-pulsar-lca-summary-report-10-2-2013-ams-031214.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 189.41,
+      "success": true,
+      "donnees_extraites": {
+        "error": "Format JSON invalide",
+        "raw_response": "Page | 184\n--- Fin des pages --- \n\n---\n\nFabricant: Sankапate Technology  \nAnnée: 2叭11年  \nNom du produit: Pulsар 2固态硬盘（SSD）  \nImpact carbone: 二氧化碳当量：20.5公斤  \nConsommation électriques: 等效于点亮一个10瓦的灯泡十分钟的能量消耗，即大约0.1千瓦时。  \nPoids du Produit: 文档中未提供具体数值。\n\nBased on your extracted details, here's the corresponding JSON structure:\n\n```json\n{\n    \"fabricant\": \"SankапATE Technology\",\n    \"annee\": 211,\n    \"nom_produit\": \"Pulsар2 固态硬盘(SSD)\",\n    \"impact_carbone\": 0.204999 * 1e3 + 11, // converting 2.1*10^2 i...",
+        "parsing_error": "Expecting ',' delimiter: line 5 column 32 (char 132)"
+      },
+      "texte_brut_apercu": "Pulsar 2 SSD Product Life Cycle Analysis Summary\nProduct Description\nThe Pulsar 2 SSD is a solid state drive designed to deliver the price-performance benefits plus the data integrity\nand drive endura...",
+      "pages_traitees": 3,
+      "completude": 0.0
+    },
+    {
+      "fichier": "Ecoprofile_SurfaceStudio.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 113.72,
+      "success": true,
+      "donnees_extraites": {
+        "error": "Format JSON invalide",
+        "raw_response": "Microsoft Corporation\n2021\n9.2 kg\n28\" x 15.5\" x .6\"\n---\nImpact carbon: 100 kgCO2e\nMax power consumption: 25W\n---\n\nEnd of report\n<tool_call>\n yargJSON\n>{\"fabricant\": \"Microsoft Corporation\", \"annee\": 2011, \"nom_produit\": \"Surface Studio\", \"impact_carbone\": 120.2, \"consommation_eletrique\": 40, \"poids_produit': 9.5}\"}",
+        "parsing_error": "Expecting ':' delimiter: line 1 column 165 (char 164)"
+      },
+      "texte_brut_apercu": "ECOPROFILE\nSurface Studio\n\n--- Page suivante ---\n\nECOPROFILE\nSurface Studio\nOur commitment to sustainability\nAt Microsoft Devices, sustainability is integral to our mission to build \nproducts that cre...",
+      "pages_traitees": 5,
+      "completude": 0.0
+    },
+    {
+      "fichier": "IdeaPad_V110-14.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 445.23,
+      "success": true,
+      "donnees_extraites": {
+        "fabricant": "",
+        "annee": "June 28, 2106",
+        "nom_produit": "",
+        "impact_carbone": null,
+        "consommation_elctrique": null,
+        "poids_produit": null
+      },
+      "texte_brut_apercu": "Annex B of ECMA-370 4th edition, June 2009 \nPage 1 (9) \nProduct environmental attributes – THE ECO DECLARATION \nThe declaration may be published only when all rows and/or fields marked with an * are f...",
+      "pages_traitees": 9,
+      "completude": 16.666666666666664
+    },
+    {
+      "fichier": "pcf-ideapad-1-14-amd-update.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 16.08,
+      "success": true,
+      "donnees_extraites": {
+        "error": "Format JSON invalide",
+        "raw_response": "\"fabricant\": \"Lenovo\", \"annee\": 2018, \"nom_produit\": \"IdeaPad 5 15AMD\", \"impact_carbone\": 379, \"consommation\telectrique\": null, \"poids_produit': null }",
+        "parsing_error": "Extra data: line 1 column 12 (char 11)"
+      },
+      "texte_brut_apercu": "Lenovo Product Carbon Footprint (PCF) Information Sheet \nPC/Notebook/Monitor/Tablet \n \nCommercial Name \nModel Number \nIssue Date \nLenovo IdeaPad 1 14 AMD \n81VS, 82GW \n2020-08-18 \nProduct Environmental...",
+      "pages_traitees": 2,
+      "completude": 0.0
+    },
+    {
+      "fichier": "c07524446.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 19.19,
+      "success": true,
+      "donnees_extraites": {
+        "error": "Format JSON invalide",
+        "raw_response": "\"fabricant\": \"HP\", \"annee\": null, \"nom_produit\": \"ElitePOS G系列 114英寸触摸一体机零售系统 127/129/131\", \"impact_carbone\": 280.9, \"consommation_eletrique\": 35, \"poids_produit): 4.5 }",
+        "parsing_error": "Extra data: line 1 column 12 (char 11)"
+      },
+      "texte_brut_apercu": "Product Carbon Footprint Report\nHP ElitePOS G1 14 inch Touch AiO Retail System 141/143/145\nEstimated impact\n281\nkg CO2 eq.\nAs part of HP's commitment to continually improve the environmental performan...",
+      "pages_traitees": 1,
+      "completude": 0.0
+    },
+    {
+      "fichier": "c07524578.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 22.43,
+      "success": true,
+      "donnees_extraites": {
+        "error": "Format JSON invalide",
+        "raw_response": "\"fabricant\": \"HP Inc\", \"annee\": null, \"nom_produit\": \"285 G5Small Form FactorPC\", \"impact_carbone\": 357.5, \"consommation\telectrique\": 72840, \"poids_produit\\\": 5530 }",
+        "parsing_error": "Extra data: line 1 column 12 (char 11)"
+      },
+      "texte_brut_apercu": "Product carbon footprint\nHP 280 G5 Small Form Factor PC\nEstimated impact\n350 –\n1430t\nkgCO2e\n*All estimates of carbon\nfootprint are uncertain. HP Inc\nreports the 5th and 95th\npercentile of the carbon\nf...",
+      "pages_traitees": 2,
+      "completude": 0.0
+    }
+  ],
+  "analyse": {
+    "taux_succes": 100.0,
+    "completude_moyenne": 1.5,
+    "temps_traitement_moyen": 94.5,
+    "temps_total": 1039.6,
+    "documents_reussis": 11,
+    "documents_total": 11
+  }
+}

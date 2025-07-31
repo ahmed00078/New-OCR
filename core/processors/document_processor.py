@@ -238,7 +238,7 @@ class DocumentProcessor:
         if not valid_texts:
             return ""
         
-        return "\n\n--- Page suivante ---\n\n".join(valid_texts)
+        return "\n\n".join(valid_texts)
     
     def process_single_image(self, 
                            image: Union[str, Image.Image],

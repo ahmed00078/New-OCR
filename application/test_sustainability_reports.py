@@ -16,7 +16,7 @@ from typing import Dict, List, Any
 import pandas as pd
 
 # Ajouter le répertoire racine au path
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from core.pipeline import pipeline
 
@@ -90,7 +90,7 @@ Retourner un JSON avec : fabricant, annee, nom_produit"""
                 "temps_traitement": round(processing_time, 2),
                 "success": result.get("success", False),
                 "donnees_extraites": result.get("structured_data", {}),
-                "texte_brut_apercu": result.get("text", "")[:200] + "..." if result.get("text") else "",
+                "texte_brut_apercu": result.get("text", "") if result.get("text") else "",
                 "pages_traitees": result.get("pages_processed", 0)
             }
             
