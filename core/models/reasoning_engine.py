@@ -112,24 +112,25 @@ class ReasoningEngine:
     def _create_json_prompt(self, ocr_text: str, user_prompt: str) -> str:
         """Cree un prompt optimise pour generer du JSON selon le template du repo original"""
         return f"""<|im_start|>system
-You are an intelligent data extraction assistant. Analyze the text according to the instructions.
-Respond ONLY with valid JSON.
+You are a data extraction expert. Extract information from text and return ONLY a valid JSON object.
 <|im_end|>
 <|im_start|>user
-Text to analyze:
-{ocr_text}
+Extract the following information from this document text:
 
-Extraction instructions:
 {user_prompt}
 
-RULES:
-    - Use null if information is not available
-    - Return ONLY valid JSON, no markdown formatting
-    - Do not include any additional text or explanations
+Document text:
+{ocr_text}
 
-JSON Response:
+Instructions:
+- Return ONLY a JSON object with the requested fields
+- Use null for missing information
+- Do not add explanations or markdown
+- Start your response with {{ and end with }}
+
 <|im_end|>
-<|im_start|>assistant"""
+<|im_start|>assistant
+{{"""
     
     def _generate_response(self, prompt: str, max_new_tokens: int = 512) -> str:
         """Genere une reponse avec le modele"""
@@ -151,7 +152,10 @@ JSON Response:
                     temperature=0.1,
                     do_sample=True,
                     pad_token_id=self.tokenizer.eos_token_id,
-                    repetition_penalty=1.1
+                    repetition_penalty=1.2,  # Augmenter pour éviter les répétitions
+                    no_repeat_ngram_size=3,  # Éviter répétition de 3-grammes
+                    early_stopping=True,     # Arrêt précoce
+                    eos_token_id=self.tokenizer.eos_token_id
                 )
             
             input_length = inputs['input_ids'].shape[1]

@@ -3,3 +3,7 @@ venv310/
 __pycache__/
 
 GOT-OCR-Rearchitected/
+
+data/
+
+application/
