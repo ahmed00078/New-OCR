@@ -100,8 +100,22 @@ class ReasoningEngine:
         # Creer le prompt pour extraction JSON
         prompt = self._create_json_prompt(ocr_text, user_prompt)
         
+        # DEBUG: Afficher le prompt complet envoyé au modèle
+        logger.info("=" * 80)
+        logger.info("PROMPT COMPLET ENVOYÉ AU MODÈLE:")
+        logger.info("=" * 80)
+        logger.info(prompt)
+        logger.info("=" * 80)
+        
         try:
             response = self._generate_response(prompt)
+            
+            # DEBUG: Afficher la réponse brute du modèle
+            logger.info("RÉPONSE BRUTE DU MODÈLE:")
+            logger.info("-" * 80)
+            logger.info(response)
+            logger.info("-" * 80)
+            
             json_result = self._parse_json_response(response)
             return json_result
             

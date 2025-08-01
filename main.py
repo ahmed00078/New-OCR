@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 GOT-OCR Simplified Pipeline
-Version simplifiee et corrigee d'une pipeline OCR basee sur GOT-OCR 2.0
+Version simplifiee d'une pipeline OCR basee sur GOT-OCR 2.0
 avec support de raisonnement et segmentation d'images.
 """
 
@@ -43,7 +43,7 @@ def main():
     
     # Commande process
     process_parser = subparsers.add_parser('process', help='Traiter un fichier')
-    process_parser.add_argument('file', help='Chemin vers le fichier e traiter')
+    process_parser.add_argument('file', help='Chemin vers le fichier à traiter')
     process_parser.add_argument('--prompt', help='Instructions pour extraction d\'informations')
     process_parser.add_argument('--no-layout', action='store_true', help='Desactiver la segmentation de layout')
     process_parser.add_argument('--format', choices=['plain', 'markdown', 'latex'], 
