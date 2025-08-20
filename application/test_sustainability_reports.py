@@ -45,21 +45,21 @@ class SustainabilityReportExtractor:
             strategy: "all_at_once" ou "step_by_step"
         """
         if strategy == "all_at_once":
-            return """Extraire les informations suivantes du rapport de soutenabilité :
-            
-- Fabricant (nom de l'entreprise/constructeur)
-- Année (du rapport ou du produit)
-- Nom du produit (modèle exact)
-- Impact carbone (en kg CO2 eq ou équivalent)
-- Consommation électrique maximale (en W, kW ou équivalent)
-- Poids du produit (en kg, g ou équivalent)
+            return """Extract the following information from the sustainability report:
 
-Retourner un JSON avec ces clés exactes : fabricant, annee, nom_produit, impact_carbone, consommation_electrique, poids_produit"""
+- Manufacturer (company/manufacturer name)
+- Year (of the report or product)
+- Product name (exact model)
+- Carbon impact (in kg CO2 eq or equivalent)
+- Maximum power consumption (in W, kW, or equivalent)
+- Product weight (in kg, g, or equivalent)
+
+Return a JSON with these exact keys: manufacturer, year, product_name, carbon_impact, power_consumption, product_weight"""
         
         else:  # step_by_step
-            return """Extraire uniquement le fabricant, l'année et le nom du produit de ce rapport de soutenabilité.
-            
-Retourner un JSON avec : fabricant, annee, nom_produit"""
+            return """Extract only the manufacturer, year, and product name from this sustainability report.
+
+Return a JSON with: manufacturer, year, product_name"""
     
     def process_single_document(self, pdf_path: Path, strategy: str = "all_at_once") -> Dict[str, Any]:
         """
