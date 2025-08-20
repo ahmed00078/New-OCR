@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "script": "test_sustainability_reports.py",
+    "date_execution": "2025-08-20 15:56:12",
+    "pipeline_version": "1.0.0"
+  },
+  "configuration": {
+    "champs_cibles": {
+      "fabricant": "Nom du fabricant/constructeur",
+      "annee": "Année du rapport ou du produit",
+      "nom_produit": "Nom/modèle du produit",
+      "impact_carbone": "Impact carbone (kg CO2 eq ou unité similaire)",
+      "consommation_electrique": "Consommation électrique maximale (W, kW, etc.)",
+      "poids_produit": "Poids du produit (kg, g, etc.)"
+    },
+    "dossier_source": "data"
+  },
+  "resultats": [
+    {
+      "fichier": "VeritonVero6000MidTower_VVM6725GT.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 27.44,
+      "success": true,
+      "donnees_extraites": {
+        "manufacturer": "Acer",
+        "year": 2024,
+        "product_name": null,
+        "carbon_impact": 723,
+        "power_consumption": 18.38,
+        "product_weight": 10.6
+      },
+      "texte_brut_apercu": "Product Carbon Footprint\nEstimated carbon footprint\n723 +/- 216 kgCO2e\nAcer carefully consider environmental factors in every stage of the product life cycle. This includes\nselecting materials during design, through packaging and shipping, to usage and recycling to reduce\nenvironmental impacts.\nAcer uses PAIA (Product Attribute to Impact Algorithm) to perform product carbon footprints. The\nPAIA platform, developed based on MIT’s methodology, was created to speed up the process while\ndelivering streamlined and consistent results that are robust enough to make fact based decisions\non product sustainability.\n†All estimates of carbon footprint are uncertain. For this product, the 5th and 95th percentile of the\ncarbon footprint estimate, 303 kgCO2e and 1455 kgCO2e, to reflect that uncertainty. That estimate\nhas a mean of 723 kg of CO2e and standard deviation of 216 kg of CO2e.\n\nProduct carbon footprint by percentage\nProduct breakout\n43.2%\nUse\n43.2%\nMainboard (and other boards)\n21.2%\nPower Supply Unit(s)\n18.0%\nChassis\n6.9%\nTransport\n4.3%\nOptical Drive(s)\n1.8%\nHard Drive(s)\n1.4%\nSolid State Drive(s)\n1.4%\nEnd of Life\n1.2%\nPackaging\n0.7%\nEnd of Life 1.2%\nManufacturing\n51.3%\nGeneral Information\nProduct Weight (excluded accessory and packaging)\n10.6 kg\nForm Factor\nSmall/Medium\nTypical Energy Consumption (Yearly TEC)\n160.9 kWh\nProduct Lifetime\n4 years\nFinal Assembly in China and use in Europe\nAbout the Data\nThe product carbon footprint was calculate using the Product Attribute to Impact Algorithm model, Desktop tool, \nversion 1.4.0, copyright by the ICT Benchmarking collaboration including the Massachusetts Institute of \nTechnology’s Materials Systems Laboratory and partners.\nThe LCA result strongly influenced by the assumptions made and PAIA tools are not configured to allow for \nsimultaneous simulation, it is not recommended that PAIA results be used in comparisons.\nLearn more about Acer Sustainability, please visit Acer Sustainability Website and Acer Earthion Website.\nDisclaimer\nAll estimates of carbon footprint are uncertain. This information sheet contains a description of the carbon \nfootprint data for this declared product, which is based on estimates of the current state of the product life cycle, \nbut is subject to known or unknown risks or uncertainties, so actual results may be different from the statement.\nThe information contained herein is subject to change without notice and Acer Inc. shall not be liable for technical \nor editorial errors or omissions contained herein.\n2024/Jun",
+      "pages_traitees": 2,
+      "completude": 0.0
+    },
+    {
+      "fichier": "pcf-ideapad-1-15-alc7.pdf",
+      "strategie": "all_at_once",
+      "temps_traitement": 22.09,
+      "success": true,
+      "donnees_extraites": {
+        "manufacturer": "Lenovo",
+        "year": 2023,
+        "product_name": "IdeaPad 115 ALC 7",
+        "carbon_impact": 286,
+        "power_consumption": null,
+        "product_weight": 1.6
+      },
+      "texte_brut_apercu": "Product Carbon Footprint I de a pad 115 ALC 7 Le novo Machine Types: 82 R 4 Device Type: Notebook Report Date 01/09/2023 Lenovo values our commitment to the environment: As part of that commitment, Le novo performs a streamlined product lifecycle analysis in accordance with the IEC TR 62921 standard. This analysis allows the customer to estimate the carbon footprint of their product. The carbon footprint is the total green- house gases emitted by the product over its lifespan reported as global warming potential for 100- year time horizon( GWP- 100) in units of CO2 equivalents Estimated carbon footprint of the: Ide a pad 115 ALC 7 286 kg CO 2 e 59 kg CO 2 e This estimate uses the assumptions from the table below( Based on EU use location. U. S. estimates below) :  Product Weight( kg)  1.60 Product Screen Size( inches)  15.6 Assembly Location China Product Lifetime( years)  4 Yearly Typical Energy Use( KWh)  20.23 Use Location EU Below is a breakout of the carbon emissions of this product by both lifecycle stage( raw material extraction through product end- of- life) and greenhouse gases resulting from the manufacture of major components:  Product Carbon Footprinting( PCF) is calculated using P AIA, a globally- accepted methodology to streamline the PCF process.  0.5%  25.4%  14.2%  Main Board Main Board 2.6%  9.5%  33.5%  4.3%  5.0%  5.0%  Packaging Packaging 0.6%  0.0%  0.0%  4.3%  5.0%  5.0%  This pie chart shows the percentage contribution of the mean value for each element( Production,  reports both the EU and US totals for transparency. For more Transport, Use, and End- of- Life) of the analysis for the full lifecycle CO 2 e impacts of the product.  detailed information, go to www. lenovo. com/ pic_f strategy.  Mean( US) :  Mean( US) :  308 Standard Deviation( EU) :  59 95 th Percentile( EU) :  588 Standard Deviation( US) :  54",
+      "pages_traitees": 1,
+      "completude": 0.0
+    }
+  ],
+  "analyse": {
+    "taux_succes": 100.0,
+    "completude_moyenne": 0.0,
+    "temps_traitement_moyen": 24.8,
+    "temps_total": 49.5,
+    "documents_reussis": 2,
+    "documents_total": 2
+  }
+}
