@@ -2,8 +2,9 @@ import torch
 import gc
 import json
 from typing import Dict, Any
-from transformers import AutoModelForCausalLM, AutoTokenizer
 import logging
+import os
+from pathlib import Path
 
 from config.settings import settings
 
@@ -14,10 +15,10 @@ class ReasoningEngine:
     
     def __init__(self, device: str = "auto"):
         self.model = None
-        self.tokenizer = None
         self.device = self._get_device(device)
         self.model_name = settings.REASONING_MODEL
         self.max_tokens = settings.MAX_TOKENS
+        self.gguf_model_path = "gpt-oss-20b-Q4_0.gguf"
         
     def _get_device(self, device_preference: str) -> str:
         """Determine le device optimal"""
@@ -31,53 +32,59 @@ class ReasoningEngine:
         return device_preference
     
     def load(self) -> None:
-        """Lazy loading du modele AI"""
+        """Lazy loading du modele GGUF"""
         if self.model is not None:
             return
             
         try:
-            logger.info(f"Loading AI model: {self.model_name}")
+            logger.info(f"Loading GGUF model: {self.gguf_model_path}")
             
-            self.tokenizer = AutoTokenizer.from_pretrained(
-                self.model_name, 
-                trust_remote_code=True
+            # Importer llama-cpp-python
+            try:
+                from llama_cpp import Llama
+            except ImportError:
+                logger.error("llama-cpp-python not installed. Install with: pip install llama-cpp-python")
+                raise ImportError("llama-cpp-python is required for GGUF models")
+            
+            # Télécharger le modèle GGUF si nécessaire
+            model_path = self._download_gguf_model()
+            
+            # Configuration pour GGUF - Limiter les couches GPU pour éviter OOM
+            n_gpu_layers = 30 if self.device == "cuda" else 0  # Seulement 30 couches sur GPU
+            
+            self.model = Llama(
+                model_path=model_path,
+                n_gpu_layers=n_gpu_layers,
+                n_ctx=self.max_tokens,
+                verbose=False,
+                chat_format="chatml"  # Format compatible avec GPT-OSS
             )
             
-            # Configuration avec quantization 8-bit si GPU disponible
-            model_kwargs = {
-                "trust_remote_code": True,
-                "low_cpu_mem_usage": True,
-                "torch_dtype": torch.float16 if self.device == "cuda" else torch.float32,
-                "device_map": "auto" if self.device == "cuda" else None
-            }
-            
-            # Ajouter quantization si GPU disponible et bitsandbytes installé
-            if self.device == "cuda":
-                try:
-                    from transformers import BitsAndBytesConfig
-                    model_kwargs["quantization_config"] = BitsAndBytesConfig(
-                        load_in_8bit=True,
-                        llm_int8_threshold=6.0,
-                        llm_int8_enable_fp32_cpu_offload=False
-                    )
-                    logger.info("Using 8-bit quantization for AI model")
-                except ImportError:
-                    logger.warning("bitsandbytes not available, using full precision")
-            
-            self.model = AutoModelForCausalLM.from_pretrained(
-                self.model_name,
-                **model_kwargs
-            )
-            
-            # Move to device if not using device_map
-            if self.device != "cuda":
-                self.model = self.model.to(self.device)
-            
-            self.model.eval()
-            logger.info(f"AI model loaded successfully on {self.device}")
+            logger.info(f"GGUF model loaded successfully with {n_gpu_layers} GPU layers")
             
         except Exception as e:
-            logger.error(f"Failed to load AI model: {e}")
+            logger.error(f"Failed to load GGUF model: {e}")
+            raise
+    
+    def _download_gguf_model(self) -> str:
+        """Télécharge le modèle GGUF depuis Hugging Face"""
+        try:
+            from huggingface_hub import hf_hub_download
+            
+            cache_dir = Path.home() / ".cache" / "huggingface" / "gguf"
+            cache_dir.mkdir(parents=True, exist_ok=True)
+            
+            model_path = hf_hub_download(
+                repo_id=self.model_name,
+                filename=self.gguf_model_path,
+                cache_dir=cache_dir
+            )
+            
+            logger.info(f"GGUF model downloaded to: {model_path}")
+            return model_path
+            
+        except Exception as e:
+            logger.error(f"Failed to download GGUF model: {e}")
             raise
     
     def extract_to_json(self, ocr_text: str, user_prompt: str) -> Dict[str, Any]:
@@ -95,7 +102,7 @@ class ReasoningEngine:
             self.load()
             
         # Tronquer le texte si trop long
-        ocr_text = self._truncate_text(ocr_text)
+        # ocr_text = self._truncate_text(ocr_text)  # This was not commanted
         
         # Creer le prompt pour extraction JSON
         prompt = self._create_json_prompt(ocr_text, user_prompt)
@@ -146,40 +153,30 @@ Instructions:
 <|im_start|>assistant
 {{"""
     
-    def _generate_response(self, prompt: str, max_new_tokens: int = 512) -> str:
-        """Genere une reponse avec le modele"""
+    def _generate_response(self, prompt: str, max_new_tokens: int = 1024) -> str:       # was max_new_tokens: int = 512
+        """Genere une reponse avec le modele GGUF"""
         try:
-            inputs = self.tokenizer(
-                prompt, 
-                return_tensors="pt", 
-                truncation=True,
-                max_length=self.max_tokens - max_new_tokens
+            # Créer le message au format ChatML pour GPT-OSS
+            messages = [
+                {"role": "system", "content": "You are a data extraction expert. Extract information from text and return ONLY a valid JSON object."},
+                {"role": "user", "content": prompt}
+            ]
+            
+            response = self.model.create_chat_completion(
+                messages=messages,
+                max_tokens=max_new_tokens,
+                temperature=0.1,
+                repeat_penalty=1.2,
+                top_p=0.95,
+                stop=["<|im_end|>", "</s>"]
             )
             
-            if torch.cuda.is_available() and self.device == "cuda":
-                inputs = {k: v.cuda() for k, v in inputs.items()}
-            
-            with torch.no_grad():
-                outputs = self.model.generate(
-                    **inputs,
-                    max_new_tokens=max_new_tokens,
-                    temperature=0.1,
-                    do_sample=True,
-                    pad_token_id=self.tokenizer.eos_token_id,
-                    repetition_penalty=1.2,  # Augmenter pour éviter les répétitions
-                    no_repeat_ngram_size=3,  # Éviter répétition de 3-grammes
-                    early_stopping=True,     # Arrêt précoce
-                    eos_token_id=self.tokenizer.eos_token_id
-                )
-            
-            input_length = inputs['input_ids'].shape[1]
-            response_tokens = outputs[0][input_length:]
-            response = self.tokenizer.decode(response_tokens, skip_special_tokens=True)
-            
-            return response.strip()
+            # Extraire le contenu de la réponse
+            content = response['choices'][0]['message']['content']
+            return content.strip()
             
         except Exception as e:
-            logger.error(f"Response generation failed: {e}")
+            logger.error(f"GGUF response generation failed: {e}")
             return "{}"
     
     def _parse_json_response(self, response: str) -> Dict[str, Any]:
@@ -188,7 +185,25 @@ Instructions:
             # Nettoyer la reponse
             response = response.strip()
             
-            # Trouver le JSON dans la reponse
+            # Chercher les patterns possibles de JSON
+            import re
+            
+            # Pattern pour trouver JSON dans des balises
+            json_patterns = [
+                r'<\|message\|>({.*?})',  # Pattern GPT-OSS
+                r'```json\s*({.*?})\s*```',  # Pattern markdown
+                r'({.*?})',  # Pattern général
+            ]
+            
+            for pattern in json_patterns:
+                matches = re.findall(pattern, response, re.DOTALL)
+                for match in matches:
+                    try:
+                        return json.loads(match.strip())
+                    except:
+                        continue
+            
+            # Fallback: chercher manuellement le JSON
             start_idx = response.find('{')
             end_idx = response.rfind('}') + 1
             
@@ -196,7 +211,7 @@ Instructions:
                 json_str = response[start_idx:end_idx]
                 return json.loads(json_str)
             else:
-                # Fallback: essayer de parser toute la reponse
+                # Dernier fallback: essayer de parser toute la reponse
                 return json.loads(response)
                 
         except json.JSONDecodeError as e:
@@ -237,18 +252,16 @@ Instructions:
             return truncated + "..."
     
     def unload(self) -> None:
-        """Decharge le modele pour liberer la memoire"""
+        """Decharge le modele GGUF pour liberer la memoire"""
         if self.model is not None:
             del self.model
-            del self.tokenizer
             self.model = None
-            self.tokenizer = None
             
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
             gc.collect()
             
-            logger.info("AI model unloaded")
+            logger.info("GGUF model unloaded")
     
     def __del__(self):
         """Cleanup automatique"""

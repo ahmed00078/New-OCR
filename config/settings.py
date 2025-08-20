@@ -7,13 +7,13 @@ class Settings:
     # Models
     OCR_MODEL: str = "stepfun-ai/GOT-OCR-2.0-hf"
     LAYOUT_MODEL: str = "PP-DocLayout_plus-L"
-    REASONING_MODEL: str = "Qwen/Qwen2.5-7B-Instruct"
+    REASONING_MODEL: str = "unsloth/gpt-oss-20b-GGUF"   # Qwen/Qwen2.5-7B-Instruct -- in transformers
     
     # Performance
     MAX_MEMORY_MB: int = 20000
     BATCH_SIZE: int = 5
     MAX_PAGES: int = 50
-    MAX_TOKENS: int = 4096
+    MAX_TOKENS: int = 8192  # was 4096
     
     # Paths
     TEMP_DIR: str = "/tmp/got-ocr"
