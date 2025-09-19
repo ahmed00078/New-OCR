@@ -7,13 +7,13 @@ class Settings:
     # Models
     OCR_MODEL: str = "stepfun-ai/GOT-OCR-2.0-hf"
     LAYOUT_MODEL: str = "PP-DocLayout_plus-L"
-    REASONING_MODEL: str = "unsloth/gpt-oss-20b-GGUF"   # Qwen/Qwen2.5-7B-Instruct -- in transformers
+    REASONING_MODEL: str = "unsloth/gpt-oss-20b-GGUF"  # unsloth/Mistral-Small-3.2-24B-Instruct-2506-GGUF and Qwen/Qwen2.5-7B-Instruct
     
     # Performance
     MAX_MEMORY_MB: int = 20000
     BATCH_SIZE: int = 5
     MAX_PAGES: int = 50
-    MAX_TOKENS: int = 8192  # was 4096
+    MAX_TOKENS: int = 8192  # was 4096 - 16384 GGUF response generation failed: Requested tokens (15256) exceed context window of 8192
     
     # Paths
     TEMP_DIR: str = "/tmp/got-ocr"

@@ -18,7 +18,7 @@ class ReasoningEngine:
         self.device = self._get_device(device)
         self.model_name = settings.REASONING_MODEL
         self.max_tokens = settings.MAX_TOKENS
-        self.gguf_model_path = "gpt-oss-20b-Q4_0.gguf"
+        self.gguf_model_path = "gpt-oss-20b-Q4_0.gguf"  # Mistral-Small-3.2-24B-Instruct-2506-Q4_K_M.gguf
         
     def _get_device(self, device_preference: str) -> str:
         """Determine le device optimal"""
