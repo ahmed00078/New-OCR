@@ -97,11 +97,9 @@ def main():
         # Exemples de prompts
         st.subheader("💡 Exemples de prompts")
         example_prompts = [
-            "Extraire toutes les informations personnelles",
-            "Extraire le montant, la date et le numéro de facture",
-            "Extraire les compétences et l'expérience professionnelle",
-            "Extraire les données de contact (nom, téléphone, email)",
-            "Extraire les montants et dates importantes"
+            "Extraire l'impact carbone, le poids et le nom du fabricant",
+            "Extraire l'empreinte carbone et la consommation d'énergie",
+            "Extraire les données environnementales et techniques du produit"
         ]
         
         for prompt in example_prompts:
@@ -183,10 +181,10 @@ def main():
                             st.subheader("Métadonnées")
                             metadata = {
                                 "Pages traitées": result.get('pages_processed', 0),
-                                "Temps de traitement": f"{result.get('processing_time', 0):.2f}s",
                                 "Modèle OCR": settings.OCR_MODEL,
                                 "Layout utilisé": use_layout,
-                                "Format": format_type
+                                "Format": format_type,
+                                "Longueur texte": f"{len(result.get('text', ''))} caractères"
                             }
                             
                             for key, value in metadata.items():
