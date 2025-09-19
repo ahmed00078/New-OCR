@@ -29,3 +29,5 @@ pydantic
 # Performance optimizations
 optimum
 bitsandbytes
+
+streamlit
