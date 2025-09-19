@@ -120,7 +120,7 @@ def main():
             if uploaded_file.type.startswith('image/'):
                 try:
                     image = Image.open(uploaded_file)
-                    st.image(image, caption="Document à traiter", use_column_width=True)
+                    st.image(image, caption="Document à traiter", use_container_width=True)
                 except Exception as e:
                     st.error(f"Erreur lors du chargement de l'image: {e}")
             
