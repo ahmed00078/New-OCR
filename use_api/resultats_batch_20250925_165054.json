@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "script": "batch_processor.py",
+    "date_execution": "2025-09-25T16:50:54.822705",
+    "user_prompt": "Extract carbon footprint, power consumption, manufacturer, product weight",
+    "source_folder": "../application/data/old data/test/",
+    "total_files": 1,
+    "successful_files": 1,
+    "failed_files": 0,
+    "total_processing_time": 24.064125537872314
+  },
+  "results": [
+    {
+      "success": true,
+      "file": "pcf-ideapad-1-14-amd-update.pdf",
+      "text": "Lenovo Product Carbon Footprint (PCF) Information Sheet \nPC/Notebook/Monitor/Tablet \n \nCommercial Name \nModel Number \nIssue Date \nLenovo IdeaPad 1 14 AMD \n81VS, 82GW \n2020-08-18 \nProduct Environmental Attributes \n(a) Product Carbon Footprint Value: \n370 kg of CO2e (see Note 1 below) \n(b) Product Picture: \n(c) Life Cycle Detail by Component & Life Stage \n(Pie Chart):\n\nLenovo Product Carbon Footprint (PCF) Information Sheet\nNotes:\nLife cycle phases included in the streamlined Product Attribute to Impact Algorithm (PAIA) Life Cycle Analysis (LCA) can be grouped\ninto four categories which include Manufacture, Transport, Use, and End of Life. Below is a brief description of each phase.\nManufacture: This life cycle phase captures emissions generated during the extraction, production, and transport of raw materials, the\nmanufacture of components and subassemblies (including the product packaging) and product assembly.\nTransport: Emissions included in the transport phase include all those generated during the air, ocean or land transport of finished or\nsemi-finished Lenovo products between Lenovo facilities and from Lenovo facilities to customers.\nUse: In use energy consumption is calculated in accordance with the U.S. Environmental Protection Agency’s Energy Star® Typical\nEnergy Consumption (TEC) methodology. Calculated energy consumption is then used in combination with average emissions factors\nfor the designated country of use to calculate emissions.\nEnd of Life: It is assumed that a designated portion of the product (see table above) is recycled at the end of the use period determined\nin the TEC methodology. It is also assumed that the balance of the product waste materials is disposed of by landfill. Emissions\ngenerated during the mechanical destruction, separation and transport of end of life materials are included in the calculation.\nProduct scope of this sheet includes desktop computer, integrated desktop computer, notebook computer, monitor and tablet.\nThis document is only valid in connection with “THE ECO DECLARATION” of the specific product.\nPage 2 of 2",
+      "data": {
+        "carbon_footprint": "370 kg of CO2e",
+        "power_consumption": null,
+        "manufacturer": "Lenovo",
+        "product_weight": null
+      },
+      "pages_processed": 2,
+      "processing_time": 24.058554887771606,
+      "error": null
+    }
+  ]
+}

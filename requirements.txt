@@ -21,6 +21,14 @@ numpy
 fastapi
 uvicorn[standard]
 python-multipart
+requests
+
+# Data processing
+pandas
+
+# GGUF model support (ReasoningEngine)
+llama-cpp-python
+huggingface_hub
 
 # Utilities
 psutil
@@ -30,4 +38,5 @@ pydantic
 optimum
 bitsandbytes
 
+# UI
 streamlit
